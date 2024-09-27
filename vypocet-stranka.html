@@ -128,10 +128,42 @@
                 .then(data => console.log(data))
                 .catch(error => console.error('Error:', error));
 
-                // Odeslat zprávu na Discord webhook
+                // Odeslat zprávu na Discord webhook s Embedem
                 const webhookUrl = 'https://discord.com/api/webhooks/1289313384000520212/L1fJq3P4Dz0GOoBj5mG-pS6G59FVOERAFgUP8Mp5ZFSSIv-S6TdpMWMXfSQjUPM-FPKT';
                 const webhookMessage = {
-                    content: formattedText
+                    embeds: [
+                        {
+                            title: "Výpočet DPFO",
+                            color: 0x00FF00, // Zelená barva
+                            fields: [
+                                {
+                                    name: "Kto",
+                                    value: `@${name}`,
+                                    inline: true
+                                },
+                                {
+                                    name: "Čo",
+                                    value: reason,
+                                    inline: true
+                                },
+                                {
+                                    name: "Základ",
+                                    value: `${amount}€`,
+                                    inline: true
+                                },
+                                {
+                                    name: "Daň z príjmu",
+                                    value: `${incomeTax}€`,
+                                    inline: true
+                                },
+                                {
+                                    name: "DPFO",
+                                    value: `${incomeTax}€`,
+                                    inline: true
+                                }
+                            ]
+                        }
+                    ]
                 };
 
                 fetch(webhookUrl, {
