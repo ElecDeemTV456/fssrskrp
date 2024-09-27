@@ -127,6 +127,28 @@
                 .then(response => response.text())
                 .then(data => console.log(data))
                 .catch(error => console.error('Error:', error));
+
+                // Odeslat zprávu na Discord webhook
+                const webhookUrl = 'https://discord.com/api/webhooks/1289313384000520212/L1fJq3P4Dz0GOoBj5mG-pS6G59FVOERAFgUP8Mp5ZFSSIv-S6TdpMWMXfSQjUPM-FPKT';
+                const webhookMessage = {
+                    content: formattedText
+                };
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(webhookMessage),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Webhook message sent successfully!');
+                    } else {
+                        console.error('Failed to send webhook message:', response.statusText);
+                    }
+                })
+                .catch(error => console.error('Error sending webhook:', error));
             } else {
                 alert('Prosím, vyplňte všetky údaje správne.');
             }
