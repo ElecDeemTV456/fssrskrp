@@ -111,7 +111,7 @@
 
                 // Výsledky
                 let incomeTax = dan; // Daň z príjmu
-                let formattedText = `Kto: @${name} ║ahojroli║\nČo: ${reason}\nZáklad: ${amount}€\nDaň z príjmu: ${incomeTax}€\nDPFO: ${incomeTax}€`;
+                let formattedText = `Kto: @${name} \nČo: ${reason}\nZáklad: ${amount}€\nDaň z príjmu: ${incomeTax}€\nDPFO: ${incomeTax}€`;
 
                 // Zobrazit na stránce
                 document.getElementById('result').textContent = formattedText;
@@ -137,29 +137,24 @@
                             color: 0x00FF00, // Zelená barva
                             fields: [
                                 {
-                                    name: "Kto",
-                                    value: `@${name}`,
-                                    inline: true
+                                    name: "Meno",
+                                    value: name,
+                                    inline: false
                                 },
                                 {
-                                    name: "Čo",
-                                    value: reason,
-                                    inline: true
-                                },
-                                {
-                                    name: "Základ",
+                                    name: "Čiastka príjmu (€)",
                                     value: `${amount}€`,
-                                    inline: true
+                                    inline: false
                                 },
                                 {
-                                    name: "Daň z príjmu",
+                                    name: "Daň",
                                     value: `${incomeTax}€`,
-                                    inline: true
+                                    inline: false
                                 },
                                 {
-                                    name: "DPFO",
-                                    value: `${incomeTax}€`,
-                                    inline: true
+                                    name: "Za čo",
+                                    value: reason,
+                                    inline: false
                                 }
                             ]
                         }
