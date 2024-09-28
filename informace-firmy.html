@@ -29,6 +29,29 @@
             background-color: #e7f3ff;
             border-left: 4px solid #0073e6;
         }
+        .calculator {
+            margin-top: 20px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d1e7dd;
+            border-left: 4px solid #198754;
+        }
     </style>
 </head>
 <body>
@@ -42,9 +65,24 @@
             <div class="exchange-rate">Kurz EUR/CZK: <span id="eur-czk">Načítání...</span></div>
             <div class="exchange-rate">Kurz EUR/USD: <span id="eur-usd">Načítání...</span></div>
         </div>
+
+        <div class="calculator">
+            <h2>Konvertor měn</h2>
+            <label for="amount">Zadejte částku v EUR:</label>
+            <input type="number" id="amount" placeholder="Zadejte částku" required><br><br>
+            <button onclick="convertCurrency('CZK')">Převést na CZK</button>
+            <button onclick="convertCurrency('USD')">Převést na USD</button>
+        </div>
+
+        <div id="conversion-result" class="result" style="display: none;">
+            <h3>Výsledok:</h3>
+            <p>Konvertovaná částka: <span id="converted-amount"></span></p>
+        </div>
     </section>
 
     <script>
+        let eurToCzk, eurToUsd;
+
         // Funkce pro získání aktuálních kurzů z API
         async function getExchangeRates() {
             try {
@@ -52,8 +90,8 @@
                 const data = await response.json();
 
                 // Získání kurzu EUR/CZK a EUR/USD
-                const eurToCzk = data.rates.CZK;
-                const eurToUsd = data.rates.USD;
+                eurToCzk = data.rates.CZK;
+                eurToUsd = data.rates.USD;
 
                 // Aktualizace hodnot na stránce
                 document.getElementById('eur-czk').textContent = eurToCzk.toFixed(2) + ' CZK';
@@ -66,7 +104,26 @@
         }
 
         // Automaticky aktualizovat kurzy při načtení stránky
-        window.onload = getExchangeRates;
+        window.onload = () => {
+            getExchangeRates();
+            setInterval(getExchangeRates, 300000); // Aktualizace každých 5 minut (300000 ms)
+        };
+
+        // Funkce pro konverzi měn
+        function convertCurrency(currency) {
+            const amount = parseFloat(document.getElementById('amount').value);
+            let convertedAmount;
+
+            if (currency === 'CZK') {
+                convertedAmount = amount * eurToCzk;
+            } else if (currency === 'USD') {
+                convertedAmount = amount * eurToUsd;
+            }
+
+            // Zobrazení výsledku
+            document.getElementById('converted-amount').textContent = convertedAmount.toFixed(2) + ' ' + currency;
+            document.getElementById('conversion-result').style.display = 'block';
+        }
     </script>
 </body>
 </html>
