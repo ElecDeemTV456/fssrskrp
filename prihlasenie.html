@@ -106,7 +106,10 @@
     </style>
     <script>
         const firmData = {
-            "FSSR": "hesloFSSR"
+            "FSSR": "hesloFSSR",
+            "UNB": "hesloUNB",
+            "PZSR": "hesloPZSR",
+            "MP": "hesloMP"
         };
 
         function showLoginForm() {
@@ -124,7 +127,17 @@
             if (firmData[firmName] && firmData[firmName] === password) {
                 closeLoginForm();
                 alert('Prihlásenie úspešné! Môžete zpracovávať dáta firmy ' + firmName);
-                window.open('informace-firmy.html', '_blank'); // Otevře nové okno s informacemi o firmě
+                
+                // Otevře stránku specifickou pro firmu
+                if (firmName === "FSSR") {
+                    window.open('informace-fssr.html', '_blank');
+                } else if (firmName === "UNB") {
+                    window.open('informace-unb.html', '_blank');
+                } else if (firmName === "PZSR") {
+                    window.open('informace-pzsr.html', '_blank');
+                } else if (firmName === "MP") {
+                    window.open('informace-mp.html', '_blank');
+                }
             } else {
                 alert('Nesprávne meno firmy alebo heslo.');
             }
