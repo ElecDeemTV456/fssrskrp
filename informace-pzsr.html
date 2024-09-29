@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PZSR - Informace o firmě</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            background-color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Informace o firmě PZSR</h1>
+    </header>
+
+    <section>
+        <h2>Polícia Slovenskej republiky (PZSR)</h2>
+        <p>PZSR je státní bezpečnostní složka, jejímž cílem je zajišťování bezpečnosti a ochrany občanů.</p>
+        <p>Hlavní úkoly: Zajišťování veřejného pořádku, vyšetřování zločinů a ochrana občanů.</p>
+    </section>
+
+    <section>
+        <h2>Nahlášení trestného činu</h2>
+        <label for="crime-description">Popis trestného činu:</label>
+        <textarea id="crime-description" placeholder="Popište, co se stalo"></textarea>
+        <button onclick="reportCrime()">Nahlásit</button>
+        <p id="crime-result"></p>
+        
+        <script>
+            function reportCrime() {
+                let description = document.getElementById("crime-description").value;
+                if (description) {
+                    document.getElementById("crime-result").textContent = "Děkujeme za nahlášení. Vaše zpráva byla přijata.";
+                } else {
+                    document.getElementById("crime-result").textContent = "Prosím popište trestný čin.";
+                }
+            }
+        </script>
+    </section>
+    
+    <section>
+        <h2>Kontrola pokut</h2>
+        <label for="fine-id">Číslo pokuty:</label>
+        <input type="text" id="fine-id" placeholder="Zadejte číslo pokuty">
+        <button onclick="checkFine()">Zkontrolovat pokutu</button>
+        <p id="fine-result"></p>
+        
+        <script>
+            function checkFine() {
+                let fineId = document.getElementById("fine-id").value;
+                if (fineId) {
+                    document.getElementById("fine-result").textContent = "Pokuta " + fineId + " je stále neuhrazena.";
+                } else {
+                    document.getElementById("fine-result").textContent = "Prosím zadejte číslo pokuty.";
+                }
+            }
+        </script>
+    </section>
+    
+</body>
+</html>

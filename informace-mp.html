@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP - Informace o firmě</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            background-color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Informace o firmě MP</h1>
+    </header>
+
+    <section>
+        <h2>Mestská polícia (MP)</h2>
+        <p>Mestská polícia je místní bezpečnostní složka zaměřená na udržování pořádku ve městech a ochraně majetku a občanů.</p>
+        <p>Hlavní úkoly: Kontrola městského pořádku, prevence přestupků a zabezpečení městských událostí.</p>
+    </section>
+
+    <section>
+        <h2>Nahlášení přestupku</h2>
+        <label for="offense-description">Popis přestupku:</label>
+        <textarea id="offense-description" placeholder="Popište přestupek"></textarea>
+        <button onclick="reportOffense()">Nahlásit přestupek</button>
+        <p id="offense-result"></p>
+        
+        <script>
+            function reportOffense() {
+                let description = document.getElementById("offense-description").value;
+                if (description) {
+                    document.getElementById("offense-result").textContent = "Přestupek byl nahlášen. Děkujeme!";
+                } else {
+                    document.getElementById("offense-result").textContent = "Prosím popište přestupek.";
+                }
+            }
+        </script>
+    </section>
+    
+    <section>
+        <h2>Žádost o povolení</h2>
+        <button onclick="applyForPermit()">Zažádat o povolení</button>
+        <p id="permit-result"></p>
+        
+        <script>
+            function applyForPermit() {
+                document.getElementById("permit-result").textContent = "Vaše žádost o povolení byla přijata.";
+            }
+        </script>
+    </section>
+    
+</body>
+</html>

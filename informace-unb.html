@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNB - Informace o firmě</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            background-color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Informace o firmě UNB</h1>
+    </header>
+
+    <section>
+        <h2>Univerzitná nemocnica Bratislava (UNB)</h2>
+        <p>UNB je největší zdravotnické zařízení na Slovensku, poskytující širokou škálu zdravotní péče.</p>
+        <p>Hlavní úkoly: Poskytování zdravotní péče, výzkum a vzdělávání lékařů a zdravotnického personálu.</p>
+    </section>
+
+    <section>
+        <h2>Objednání na vyšetření</h2>
+        <label for="name">Vaše jméno:</label>
+        <input type="text" id="name" placeholder="Zadejte své jméno" required>
+        
+        <label for="surname">Vaše příjmení:</label>
+        <input type="text" id="surname" placeholder="Zadejte své příjmení" required>
+        
+        <label for="email">Váš e-mail:</label>
+        <input type="email" id="email" placeholder="Zadejte svůj e-mail" required>
+        
+        <label for="appointment-date">Zvolte datum:</label>
+        <input type="date" id="appointment-date" required>
+        
+        <button onclick="scheduleAppointment()">Objednat se</button>
+        <p id="appointment-result"></p>
+        
+        <script>
+            function scheduleAppointment() {
+                let name = document.getElementById("name").value;
+                let surname = document.getElementById("surname").value;
+                let date = document.getElementById("appointment-date").value;
+    
+                if (date) {
+                    document.getElementById("appointment-result").textContent = name + " " + surname + ", vaše vyšetření bylo naplánováno na: " + date;
+                } else {
+                    document.getElementById("appointment-result").textContent = "Prosím vyberte datum.";
+                }
+            }
+        </script>
+    </section>
+    
+    <section>
+        <h2>Online konzultace</h2>
+        <label for="nameConsultation">Vaše jméno:</label>
+        <input type="text" id="nameConsultation" placeholder="Zadejte své jméno" required>
+        
+        <label for="surnameConsultation">Vaše příjmení:</label>
+        <input type="text" id="surnameConsultation" placeholder="Zadejte své příjmení" required>
+        
+        <button onclick="startConsultation()">Spustit konzultaci</button>
+        <p id="consultation-result"></p>
+        
+        <script>
+            function startConsultation() {
+                let name = document.getElementById("nameConsultation").value;
+                let surname = document.getElementById("surnameConsultation").value;
+                document.getElementById("consultation-result").textContent = name + " " + surname + ", připojujete se k online konzultaci.";
+            }
+        </script>
+    </section>
+    
+    
+</body>
+</html>

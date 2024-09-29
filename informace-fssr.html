@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSSR - Informace o firmě</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            background-color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Informace o firmě FSSR</h1>
+    </header>
+
+    <section>
+        <h2>Finančná správa Slovenskej republiky (FSSR)</h2>
+        <p>FSSR je hlavní daňový úřad na Slovensku, který spravuje a vybírá všechny druhy daní.</p>
+        <p>Hlavní úkoly: Správa daní, boj proti daňovým únikům, správa celního systému.</p>
+    </section>
+    
+    <section>
+        <h2>Kalkulačka daní</h2>
+        <label for="name">Vaše jméno:</label>
+        <input type="text" id="name" placeholder="Zadejte své jméno" required>
+        
+        <label for="surname">Vaše příjmení:</label>
+        <input type="text" id="surname" placeholder="Zadejte své příjmení" required>
+        
+        <label for="email">Váš e-mail:</label>
+        <input type="email" id="email" placeholder="Zadejte svůj e-mail" required>
+        
+        <label for="income">Roční příjem (EUR):</label>
+        <input type="number" id="income" placeholder="Zadejte příjem" required>
+        
+        <button onclick="calculateTax()">Vypočítat daň</button>
+        <p id="result"></p>
+        
+        <script>
+            function calculateTax() {
+                let name = document.getElementById("name").value;
+                let surname = document.getElementById("surname").value;
+                let income = document.getElementById("income").value;
+                let tax;
+    
+                if (income <= 37981.94) {
+                    tax = income * 0.19;
+                } else {
+                    tax = (37981.94 * 0.19) + ((income - 37981.94) * 0.25);
+                }
+    
+                document.getElementById("result").textContent = "Vaše daň je: " + tax.toFixed(2) + " EUR. Děkujeme, " + name + " " + surname + ", za použití naší kalkulačky.";
+            }
+        </script>
+    </section>
+    
+    <section>
+        <h2>Generování daňového přiznání</h2>
+        <label for="nameDeclaration">Vaše jméno:</label>
+        <input type="text" id="nameDeclaration" placeholder="Zadejte své jméno" required>
+        
+        <label for="surnameDeclaration">Vaše příjmení:</label>
+        <input type="text" id="surnameDeclaration" placeholder="Zadejte své příjmení" required>
+        
+        <button onclick="generateDeclaration()">Vytvořit daňové přiznání</button>
+        <p id="declaration-result"></p>
+        
+        <script>
+            function generateDeclaration() {
+                let name = document.getElementById("nameDeclaration").value;
+                let surname = document.getElementById("surnameDeclaration").value;
+                document.getElementById("declaration-result").textContent = "Vaše daňové přiznání bylo úspěšně vygenerováno! Děkujeme, " + name + " " + surname + ".";
+            }
+        </script>
+    </section>
+    
+    
+</body>
+</html>
